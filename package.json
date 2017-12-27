@@ -4,7 +4,7 @@
     "description": "A Vue.js backend project",
     "author": "BlackLee<webitlee@163.com>",
     "private": true,
-    "main": "appPost.js",
+    "main": "app.js",
     "scripts": {
         "start": "node app.js"
     },
@@ -20,7 +20,9 @@
     "dependencies": {
         "koa": "^2.0.0",
         "koa-router": "^7.3.0",
-        "koa-bodyparser": "^4.2.0"
+        "koa-bodyparser": "^4.2.0",
+        "sequelize": "^4.0.0",
+        "mysql": "^2.15.0"
     },
     "devDependencies": {
         "koa-cors": "^0.0.16",

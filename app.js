@@ -12,7 +12,7 @@ app.use(async (ctx, next)=>{
             error : true,
             message : err.message
         };
-        console.error(err.message);
+        console.log(err);
     }
 })
 app.use(cors({

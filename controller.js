@@ -8,7 +8,6 @@ function addController(router, dir){
     var js_files = files.filter((file)=>{
         return file.endsWith('.js');
     })
-    // console.log(js_files);
     for(var f in js_files){
         let mapping = require(`./${dir}/${js_files[f]}`);
         addMapping(router, mapping);
