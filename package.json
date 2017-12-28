@@ -15,14 +15,15 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/michaelliao/learn-javascript.git"
+        "url": "https://github.com/webitlee/Node.js-exam-system"
     },
     "dependencies": {
         "koa": "^2.0.0",
         "koa-router": "^7.3.0",
         "koa-bodyparser": "^4.2.0",
         "sequelize": "^4.0.0",
-        "mysql": "^2.15.0"
+        "mysql": "^2.15.0",
+        "mysql2": "^1.5.1"
     },
     "devDependencies": {
         "koa-cors": "^0.0.16",

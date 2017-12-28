@@ -22,7 +22,7 @@ function defineModel(name, attributes){
     var attrs = {};
     for(let attr in attributes){
         let values = attributes[attr];
-        if(!typeof attr === object){
+        if(typeof attr !== object){
             attrs[attr] = {
                 type : values,
                 allowNull : IS_NULL
@@ -63,6 +63,5 @@ function defineModel(name, attributes){
 
 
 module.exports = {
-    defineModel,
-    sequelizeobj = Sequelize
+    defineModel : defineModel
 }

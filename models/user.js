@@ -1,11 +1,11 @@
 //用户表
-
-const db = requeire('./db');
+const db = require('./db');
+const Sequlize = require('sequelize');
 var user = db.defineModel('user', {
-    name : db.sequelizeObj.STRING(100),
+    name : Sequlize.STRING(100),
     type : {
-        type : db.sequelizeObj.INTEGER,
+        type : Sequlize.INTEGER,
         unique : true
     },
-    gender : db.sequelizeObj.BOOLEAN
+    gender : Sequlize.BOOLEAN
 })
