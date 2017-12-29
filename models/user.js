@@ -1,11 +1,13 @@
 //用户表
-const db = require('./db');
-const Sequlize = require('sequelize');
+const db = require('../db');
+const Sequelize = require('sequelize');
 var user = db.defineModel('user', {
-    name : Sequlize.STRING(100),
+    name : Sequelize.STRING(100),
     type : {
-        type : Sequlize.INTEGER,
+        type : Sequelize.INTEGER,
         unique : true
     },
-    gender : Sequlize.BOOLEAN
+    gender : Sequelize.BOOLEAN
 })
+
+module.exports = user;

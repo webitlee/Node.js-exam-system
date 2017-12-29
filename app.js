@@ -6,6 +6,10 @@ const app = new Koa();
 const controller = require('./controller');
 //导入model中间件
 const model = require('./model')();
+//自动建表
+const init_db = require('./init-db');
+init_db.sync();
+
 app.use(async (ctx, next)=>{
     try{
         await next();
@@ -17,7 +21,6 @@ app.use(async (ctx, next)=>{
         console.log(err);
     }
 })
-model.sync();
 app.use(cors({
     origin : 'http://localhost:8080',
     maxAge : 5, //请求结果缓存多久，单位(秒)

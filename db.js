@@ -22,16 +22,14 @@ function defineModel(name, attributes){
     var attrs = {};
     for(let attr in attributes){
         let values = attributes[attr];
-        if(typeof attr !== object){
+        if(typeof values === 'object' && values['type']){
+            values.allowNull = values.allowNull || IS_NULL;
+            attrs[attr] = values;
+        }else{
             attrs[attr] = {
                 type : values,
                 allowNull : IS_NULL
             }
-        }else{
-            if(!values['allowNull']){
-                values.allowNull = IS_NULL;
-            }
-            attrs[attr] = values;
         }
     }
     attrs.id = {

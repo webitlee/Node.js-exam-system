@@ -16,9 +16,6 @@ function addModels(dirname){
         let name = f.substring(0, f.length - 3);
         models[name] = require(`./${dirname}/${f}`);
     }
-    models.sync = () => {
-        Sequelize.sync();
-    }
     return models;
 }
 module.exports = (dirname) =>{
