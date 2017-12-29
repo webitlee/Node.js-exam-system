@@ -24,8 +24,8 @@ function addMapping(router, mapping){
             router.get(path, mapping[url]);
         }else if(url.startsWith('post ')){
             //url类似'post /xxx'
-            let path = url.substring('5');
-            router.get('/login', mapping[url]);
+            let path = url.substring(5);
+            router.post(path, mapping[url]);
         }else{
             console.error("无效的URL：" + url);
         }

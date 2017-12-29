@@ -1,7 +1,5 @@
 //导入Model
 const fs = require('fs');
-const db = require('./db');
-const Sequelize = require('sequelize');
 
 function addModels(dirname){
     let files = fs.readdirSync(`./${dirname}`);

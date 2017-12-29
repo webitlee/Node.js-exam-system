@@ -4,10 +4,21 @@ const Sequelize = require('sequelize');
 var user = db.defineModel('user', {
     name : Sequelize.STRING(100),
     type : {
-        type : Sequelize.INTEGER,
-        unique : true
+        type : Sequelize.INTEGER.UNSIGNED,
     },
-    gender : Sequelize.BOOLEAN
+    gender : Sequelize.BOOLEAN,
+    score : {
+        type : Sequelize.INTEGER.UNSIGNED,
+        defaultValue : 0
+    },
+    correct : {
+        type : Sequelize.INTEGER.UNSIGNED,
+        defaultValue : 0
+    },
+    mistake : {
+        type :Sequelize.INTEGER.UNSIGNED,
+        defaultValue : 0,
+    }
 })
 
 module.exports = user;

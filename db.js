@@ -20,6 +20,12 @@ const IS_NULL = false;
 
 function defineModel(name, attributes){
     var attrs = {};
+    attrs.id = {
+        type : ID_TYPE,
+        allowNull : IS_NULL,
+        primaryKey : true,
+        autoIncrement : true
+    };
     for(let attr in attributes){
         let values = attributes[attr];
         if(typeof values === 'object' && values['type']){
@@ -32,12 +38,6 @@ function defineModel(name, attributes){
             }
         }
     }
-    attrs.id = {
-        type : ID_TYPE,
-        allowNull : IS_NULL,
-        primaryKey : true,
-        autoIncrement : true
-    };
     attrs.createdTime = {
         type : Sequelize.BIGINT,
         allowNull : IS_NULL
@@ -62,4 +62,4 @@ function defineModel(name, attributes){
 
 module.exports = {
     defineModel : defineModel
-}
+} 
