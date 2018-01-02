@@ -7,11 +7,18 @@ var mistake = model.mistake;
 var type = model.type;
 
 function relationship(){
-    // user.hasMany(mistake, {
-    //     foreignKey : 'user_id'
-    // });
-    // mistake.hasOne(exam);
-    // exam.hasMany(answer);
+    user.hasMany(mistake, {
+        foreignKey : 'user_id',
+        constraints: false
+    });
+    exam.hasMany(answer, {
+        foreignKey : 'exam_id',
+        constraints: false
+    });
+    mistake.belongsTo(exam, {
+        foreignKey : 'mistake_id',
+        constraints: false
+    });
 }
 
 module.exports = relationship();
