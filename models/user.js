@@ -3,9 +3,6 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 var user = db.defineModel('user', {
     name : Sequelize.STRING(100),
-    type : {
-        type : Sequelize.INTEGER.UNSIGNED,
-    },
     gender : Sequelize.BOOLEAN,
     score : {
         type : Sequelize.INTEGER.UNSIGNED,
@@ -18,6 +15,13 @@ var user = db.defineModel('user', {
     mistake : {
         type :Sequelize.INTEGER.UNSIGNED,
         defaultValue : 0,
+    },
+    type_id : {
+        type : Sequelize.BIGINT,
+        references : {
+            model : 'type',
+            key : 'id'
+        }
     }
 })
 

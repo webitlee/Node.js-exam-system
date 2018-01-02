@@ -6,6 +6,8 @@ const app = new Koa();
 const cors = require('./cors');
 //导入controller的中间件
 const controller = require('./controller');
+//导入维护表间关联关系中间件
+require('./relationship');
 //导入自动建表中间件
 const init_db = require('./init-db');
 

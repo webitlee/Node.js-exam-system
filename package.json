@@ -23,7 +23,8 @@
         "koa-bodyparser": "^4.2.0",
         "sequelize": "^4.0.0",
         "mysql": "^2.15.0",
-        "mysql2": "^1.5.1"
+        "mysql2": "^1.5.1",
+        "continuation-local-storage": "^3.2.1"
     },
     "devDependencies": {
         "koa-cors": "^0.0.16",

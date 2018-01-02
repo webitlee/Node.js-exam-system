@@ -2,17 +2,7 @@
 
 const config = require('./config');
 const Sequelize = require('sequelize');
-
-const sequelize = new Sequelize(config.database, config.username, config.password, {
-    host : config.host,
-    port : config.port,
-    dialect : config.dialect,
-    pool : {
-        max : 10,
-        min : 0,
-        idle : 10000
-    }
-})
+const sequelize = require('./constructor-sequelize');
 //默认id类型
 const ID_TYPE = Sequelize.BIGINT;
 //默认不为空

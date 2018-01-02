@@ -1,5 +1,5 @@
 //初始化数据库
-const model = require('./model')();
+const model = require('./import-middleware')();
 
 function sync(model){
     for(var key in model){

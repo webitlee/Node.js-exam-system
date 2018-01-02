@@ -1,4 +1,4 @@
-//导入Model
+//导入中间件
 const fs = require('fs');
 
 function addModels(dirname){

@@ -1,18 +1,14 @@
 //处理考生登录的数据库操作
-const model = require('../model')();
+const model = require('../import-middleware')();
 var user = model.user;
+var type = model.type;
 function add_user(name, type, gender){
-    return user.create({
+    let obj = {
         name,
-        type,
         gender,
-        id : 1,
-        score : 0,
-        corrent : 0,
-        mistakes : 0,
-        createdTime : 0,
-        midifyedTime : 0
-    });
+        type_id : type
+    };
+    return user.create(obj);
 }
 
 module.exports = add_user;
