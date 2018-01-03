@@ -15,14 +15,14 @@ var user = db.defineModel('user', {
     mistake : {
         type :Sequelize.INTEGER.UNSIGNED,
         defaultValue : 0,
-    },
-    type_id : {
-        type : Sequelize.BIGINT,
-        references : {
-            model : 'type',
-            key : 'id'
-        }
     }
+    // type_id : {
+    //     type : Sequelize.BIGINT,
+    //     references : {
+    //         model : 'type',
+    //         key : 'id'
+    //     }
+    // }
 })
 
 module.exports = user;

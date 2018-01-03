@@ -2,8 +2,8 @@
 const db = require('../db');
 const Sequelize = require('sequelize');
 
-var type = db.defineModel('type', {
+var scope = db.defineModel('scope', {
     name : Sequelize.STRING(100)
 })
 
-module.exports = type;
+module.exports = scope;

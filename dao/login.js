@@ -1,14 +1,34 @@
 //处理考生登录的数据库操作
 const model = require('../import-middleware')();
 var user = model.user;
-var type = model.type;
-function add_user(name, type, gender){
+var scope = model.scope;
+//添加考生信息
+function add_user(name, scope, gender){
     let obj = {
         name,
         gender,
-        type_id : type
+        scope_id : scope
     };
     return user.create(obj);
 }
 
-module.exports = add_user;
+//获取考题类型
+async function get_scopes(){
+    var data = null;
+    await scope.findAll({
+        attributes : ['id', 'name']
+    }).then((result)=>{
+        data = [];
+        for(let i =0; i < result.length; i++){
+            data[i] = {};
+            data[i]['id'] = result[i].dataValues.id;
+            data[i]['name'] = result[i].dataValues.name;
+        }
+    })
+    return data;
+}
+
+module.exports = {
+    add_user,
+    get_scopes
+}

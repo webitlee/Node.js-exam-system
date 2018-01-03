@@ -4,9 +4,13 @@ var user = model.user;
 var exam = model.exam;
 var answer = model.answer;
 var mistake = model.mistake;
-var type = model.type;
+var scope = model.scope;
 
 function relationship(){
+    user.belongsTo(scope, {
+        foreignKey : 'scope_id',
+        constraints : false
+    });
     user.hasMany(mistake, {
         foreignKey : 'user_id',
         constraints: false
