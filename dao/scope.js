@@ -27,8 +27,24 @@ async function get_scopes(){
 }
 
 //修改考题范围名称
+function edit_scope(id, name){
+    scope.findById(id).then((result)=>{
+        result.name = name;
+        result.modifiedTime = new Date().getTime();
+        result.save();
+    })
+}
+
+//输出考题范围
+function remove_scope(id){
+    scope.findById(id).then((result)=>{
+        result.destroy();
+    })
+}
 
 module.exports = {
     add_scope,
-    get_scopes
+    get_scopes,
+    edit_scope,
+    remove_scope
 }

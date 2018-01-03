@@ -15,6 +15,10 @@ function relationship(){
         foreignKey : 'user_id',
         constraints: false
     });
+    exam.belongsTo(scope, {
+        foreignKey : 'scope_id',
+        constraints : false
+    });
     exam.hasMany(answer, {
         foreignKey : 'exam_id',
         constraints: false
