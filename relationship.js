@@ -5,6 +5,8 @@ var exam = model.exam;
 var answer = model.answer;
 var mistake = model.mistake;
 var scope = model.scope;
+var todo = model.todo;
+var todo_status = model.todo_status;
 
 function relationship(){
     user.belongsTo(scope, {
@@ -27,6 +29,11 @@ function relationship(){
         foreignKey : 'mistake_id',
         constraints: false
     });
+    todo.belongsTo(todo_status, {
+        foreignKey : 'status_id',
+        constraints : false
+    })
+
 }
 
 module.exports = relationship();

@@ -8,8 +8,14 @@ const scope = model.scope;
 function add_exam(title, content, options, type, scope){
     var answers = [];
     for(let i = 0; i < options.length; i++){
-        let obj = {
-            option : options[i]
+        let option = options[i].replace(/(^\s*)|(\s*$)/g, '');
+        let obj = {};
+        if(option.slice(-1) === '#'){
+            obj.option = option.slice(0, -1);
+            obj.is_right = true;
+        }else{
+            obj.option = option;
+            obj.is_right = false;
         }
         answers.push(obj);
     }
@@ -21,6 +27,23 @@ function add_exam(title, content, options, type, scope){
         answers
     }, {
         include : [answer]
+    })
+}
+
+//根据id删除考题
+function remove_exam(id){
+    exam.findById(id, {
+        include : [
+            {
+                model : answer
+            }
+        ]
+    }).then((result)=>{
+        //console.log(JSON.stringify(result));
+        result.destroy();
+        for(let i = 0; i < result.answers.length; i++){
+            result.answers[i].destroy();
+        }
     })
 }
 
@@ -80,6 +103,10 @@ async function update_exam(id, title, content, options, type, chooseScope){
         result.type = type;
         result.scope_id = chooseScope;
         result.save();
+        //删除旧的answer
+        for(let i =0; i < result.answers.length; i++){
+            result.answers[i].destroy();
+        }
     })
 }
 
@@ -87,5 +114,6 @@ module.exports = {
     add_exam,
     get_exams,
     get_exam,
-    update_exam
+    update_exam,
+    remove_exam
 }

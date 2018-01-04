@@ -43,6 +43,27 @@ var add_exam = async (ctx, next)=>{
     }
 }
 
+//根据id删除考题
+var remove_exam = async(ctx, next)=>{
+    var responseData = {
+        message : '删除考题失败'
+    }
+    try{
+        let id = ctx.request.body.id;
+        if(id <= 0 || isNaN(id)){
+            responseData.message = '考题id不合法';
+            throw new Error();
+        }
+        await exam_dao.remove_exam(id);
+        responseData.message = '考题删除成功';
+        ctx.response.body = responseData;
+        await next();
+    }catch(err){
+        console.error(responseData.message);
+        ctx.response.status = 500;
+    }
+}
+
 //获取所有考题
 var get_exams = async(ctx, next)=>{
     var responseData = {
@@ -130,7 +151,6 @@ var update_exam = async (ctx, next)=>{
         await exam_dao.update_exam(id, title, content, options, type, scope);
         responseData.message = '考题修改成功';
         ctx.response.body = responseData;
-        console.log(1112);
         await next();
     }catch(err){
         console.error(responseDate.message);
@@ -142,5 +162,6 @@ module.exports = {
     'post /addExam' : add_exam,
     'post /getExams' : get_exams,
     'post /getExam' : get_exam,
-    'post /updateExam' : update_exam
+    'post /updateExam' : update_exam,
+    'post /removeExam' : remove_exam
 }
