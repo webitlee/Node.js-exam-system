@@ -3,13 +3,18 @@ const model = require('../import-middleware')();
 var user = model.user;
 var scope = model.scope;
 //添加考生信息
-function add_user(name, scope, gender){
+async function add_user(name, scope, gender){
+    var id = null;
     let obj = {
         name,
         gender,
         scope_id : scope
     };
-    return user.create(obj);
+    await user.create(obj).then((result)=>{
+        id = result.id;
+        console.log(JSON.stringify(result));
+    });
+    return id;
 }
 
 //获取考题类型

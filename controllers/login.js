@@ -9,6 +9,7 @@ var login = async (ctx, next)=>{
         var name = ctx.request.body.name;
         var gender = ctx.request.body.gender;
         var scope = ctx.request.body.scope;
+        var id = null;
         if(!name){
             responseData.message = '考生姓名未填写';
             throw new Error();
@@ -25,9 +26,10 @@ var login = async (ctx, next)=>{
             responseData.message = '考题类型不存在';
             throw new Error();
         }
-        login_dao.add_user(name, scope, gender);
-        responseData.message = '考生信息提交成功';
-        ctx.response.body = responseData;
+        id = await login_dao.add_user(name, scope, gender);
+        ctx.response.body = {
+            id
+        };
         await next();
     }catch(err){
         console.error(responseData.message);
