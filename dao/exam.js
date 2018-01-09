@@ -82,12 +82,13 @@ async function get_exam(id){
 async function get_exams_random(scopeId){
     var data = null;
     var limit = 5;
-    await sequelize.query('select * from exam where id >= (select floor(rand() * (select max(id) from exam))) and scope_id = ? limit ?', {
+    await sequelize.query('select e.*, a.* from exam as e left join answer as a on e.id = a.exam_id where e.id >= (select floor(rand() * (select max(id) from exam))) and e.scope_id = ? limit ?', {
         model : exam,
         replacements : [scopeId, limit],
         type : sequelize.QueryTypes.SELECT
     }).then((result)=>{
         data = result;
+        console.log(JSON.stringify(result));
     })
     return data;
 }
