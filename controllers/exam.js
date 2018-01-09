@@ -115,6 +115,28 @@ var get_exam = async(ctx, next)=>{
         ctx.response.status = 500;
     }
 }
+//随机获取指定‘考题范围’，指定数量的考题
+var get_exams_random = async (ctx, next)=>{
+    var responseData = {
+        message : '随机获取考题失败'
+    }
+    try{
+        let scopeId = ctx.request.body.scopeId;
+        let data = null;
+        if(scopeId <= 0 || isNaN(scopeId)){
+            responseData.message = '考题范围不合法';
+            return;
+        }
+        await exam_dao.get_exams_random(scopeId).then((result)=>{
+            data = result;
+        });
+        ctx.response.body = data;
+        await next();
+    }catch(err){
+        console.error(responseData.message);
+        ctx.response.status = 500;
+    }
+}
 
 //修改指定考题
 var update_exam = async (ctx, next)=>{
@@ -163,5 +185,6 @@ module.exports = {
     'post /getExams' : get_exams,
     'post /getExam' : get_exam,
     'post /updateExam' : update_exam,
-    'post /removeExam' : remove_exam
+    'post /removeExam' : remove_exam,
+    'post /getExamsRandom' : get_exams_random
 }

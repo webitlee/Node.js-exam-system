@@ -5,16 +5,17 @@ var scope = model.scope;
 //添加考生信息
 async function add_user(name, scope, gender){
     var id = null;
-    let obj = {
+    await user.create({
         name,
         gender,
         scope_id : scope
-    };
-    await user.create(obj).then((result)=>{
+    }).then((result)=>{
         id = result.id;
-        console.log(JSON.stringify(result));
     });
-    return id;
+    return {
+        id,
+        scope
+    };
 }
 
 //获取考题类型
