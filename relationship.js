@@ -33,7 +33,6 @@ function relationship(){
         foreignKey : 'status_id',
         constraints : false
     })
-
 }
 
 module.exports = relationship();

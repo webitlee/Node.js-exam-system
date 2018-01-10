@@ -80,15 +80,22 @@ async function get_exam(id){
 }
 //随机获取指定‘考题范围’，指定数量的考题
 async function get_exams_random(scopeId){
-    var data = null;
     var limit = 5;
-    await sequelize.query('select e.*, a.* from exam as e left join answer as a on e.id = a.exam_id where e.id >= (select floor(rand() * (select max(id) from exam))) and e.scope_id = ? limit ?', {
-        model : exam,
-        replacements : [scopeId, limit],
-        type : sequelize.QueryTypes.SELECT
+    var data = {
+        count : limit
+    };
+    await exam.findAll({
+        where : {
+            scope_id : scopeId
+        },
+        limit,
+        include : {
+            model : answer
+        },
+        order : sequelize.fn('RAND')
     }).then((result)=>{
-        data = result;
-        console.log(JSON.stringify(result));
+        data.exams = result;
+        console.log(JSON.stringify(data));
     })
     return data;
 }
