@@ -389,7 +389,8 @@
     <td>否</td>
     <td>无</td>
   </tr>
-</table> \
+</table> 
+
 ###  参考资料
 +  [我的博客](http://blog.csdn.net/qq_19891827)
 +  [IT笔录(Sequelize系列)](https://itbilu.com/nodejs/npm/VkYIaRPz-.html)
